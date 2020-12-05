@@ -1,0 +1,64 @@
+ <!DOCTYPE html>
+<html>
+<head>
+<title>Merry Christmas</title>
+<style>
+	#picture{
+			width: 100%;
+	}
+</style>
+</head>
+<body onload="jingle_bells()">
+<a onclick="jingle_bells()" href="#"><img id="picture" src="merry_christmas.jpeg"></a>
+
+<script>
+	
+	const c = 261.6;
+	const cs = 277.2;
+	const d = 293.7;
+	const eb = 311.1;
+	const e = 329.6;
+	const f = 349.2;
+	const fs = 370;
+	const g = 392;
+	const gs = 415.3;
+	const a = 440.0;
+	const bb = 466.2;
+	const b = 493.9;
+	
+	var context = new AudioContext();
+	var ti = 0;
+	var to = 0;
+	
+	function p(note, time){
+		let osc=context.createOscillator();
+		osc.type='triangle';
+		osc.connect(context.destination);
+		osc.frequency.value = note;
+		setTimeout(function(){osc.start();}, ti);
+		to = ti + time * 400;
+		ti = to + 70;
+		setTimeout(function(){osc.stop();}, to);
+	}
+	
+	function reset(){
+		ti = 0;
+		to = 0;
+	}
+	
+	function jingle_bells(){
+		    reset();
+			p(e,1);p(e,1);p(e,2);
+			p(e,1);p(e,1);p(e, 2);
+			p(e,1);p(g,1);p(c,1);p(d,1);
+			p(e,4);
+
+			p(f,1);p(f,1);p(f,1);p(f,1);
+			p(f,1);p(e,1);p(e,1);p(e,1);
+			p(g,1);p(g,1);p(f,1);p(d,1);
+			p(c,4)
+	}
+	
+</script>
+</body>
+</html> 
